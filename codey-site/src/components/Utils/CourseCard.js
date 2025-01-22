@@ -1,67 +1,5 @@
 import React from 'react';
-import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardActionArea from '@mui/material/CardActionArea';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import StarIcon from '@mui/icons-material/Star';
-import Divider from '@mui/material/Divider';
-import ScheduleIcon from '@mui/icons-material/Schedule';
-import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
-
-// Styled components using MUI v5 syntax
-const StyledCard = styled(Card)(({ theme }) => ({
-  maxWidth: 360,
-  marginBottom: theme.spacing(2),
-  boxShadow:
-    "0px 14px 80px rgba(59, 79, 123, 0.1), 0px 10px 50px rgba(59, 79, 123, 0.4)",
-}));
-
-const StyledMedia = styled(CardMedia)({
-  height: 210,
-});
-
-const CategoryContainer = styled('div')(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'space-between',
-  color: theme.palette.grey[500],
-}));
-
-const RatingContainer = styled('div')({
-  display: 'flex',
-  alignItems: 'center',
-  color: "#FFFF00",
-});
-
-const CourseInfoContainer = styled('div')({
-  display: 'flex',
-  justifyContent: 'space-between',
-});
-
-const TutorInfoContainer = styled('div')({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  marginTop: '30px',
-});
-
-const ButtonContainer = styled('div')({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  marginLeft: '110px',
-});
-
-const StyledButton = styled(Button)({
-  borderRadius: '25px',
-  backgroundColor: '#1FD891',
-  '&:hover': {
-    backgroundColor: '#1abc7f',
-  },
-});
+import { Star, Clock, Video } from 'lucide-react';
 
 const Course = ({ courseData }) => {
   const {
@@ -70,73 +8,63 @@ const Course = ({ courseData }) => {
     title,
     schedule,
     numberOfCourses,
-    tutorImageSrc,
     tutorName,
     coursePrice,
   } = courseData;
 
   return (
-    <StyledCard>
-      <CardActionArea>
-        <StyledMedia
-          component="img"
-          alt="Course"
-          image={tutorImageSrc}
-          title="Course Image"
+    <div className="max-w-sm bg-white rounded-lg shadow-xl overflow-hidden">
+      <div className="relative">
+        <img 
+          src="/api/placeholder/400/320"
+          alt="Course cover"
+          className="w-full h-52 object-cover"
         />
-        <CardContent>
-          <CategoryContainer>
-            <Typography variant="body2">{category}</Typography>
-            <RatingContainer>
-              {Array.from({ length: rating }).map((_, index) => (
-                <StarIcon key={index} />
-              ))}
-            </RatingContainer>
-          </CategoryContainer>
-          
-          <Typography variant="h5" sx={{ mt: 2 }}>
-            {title}
-          </Typography>
-          
-          <Divider sx={{ my: 2 }} />
-          
-          <CourseInfoContainer>
-            <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-              <ScheduleIcon /> {schedule}
-            </Typography>
-            <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-              <VideoLibraryIcon /> {numberOfCourses} courses
-            </Typography>
-          </CourseInfoContainer>
-          
-          <TutorInfoContainer>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <div style={{ width: 30, height: 30, borderRadius: '50%', overflow: 'hidden' }}>
-                <img 
-                  src={tutorImageSrc} 
-                  alt="Tutor" 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
-                />
-              </div>
-              <Typography variant="body2" color="text.secondary">
-                {tutorName}
-              </Typography>
-            </div>
-            <Typography variant="body2" color="text.secondary">
-              {coursePrice}
-            </Typography>
-          </TutorInfoContainer>
-        </CardContent>
-      </CardActionArea>
+      </div>
       
-      <CardActions>
-        <ButtonContainer>
-          <StyledButton variant="contained">
-            LEARN MORE
-          </StyledButton>
-        </ButtonContainer>
-      </CardActions>
-    </StyledCard>
+      <div className="p-6">
+        <div className="flex justify-between items-center mb-4">
+          <span className="text-gray-500 text-sm">{category}</span>
+          <div className="flex">
+            {[...Array(rating)].map((_, i) => (
+              <Star 
+                key={i}
+                className="w-5 h-5 text-yellow-400 fill-current"
+              />
+            ))}
+          </div>
+        </div>
+
+        <h2 className="text-xl font-bold mb-4 text-gray-800">{title}</h2>
+        
+        <div className="border-t border-gray-200 my-4" />
+        
+        <div className="flex justify-between mb-6">
+          <div className="flex items-center gap-2">
+            <Clock className="w-5 h-5 text-gray-500" />
+            <span className="text-sm text-gray-600">{schedule}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Video className="w-5 h-5 text-gray-500" />
+            <span className="text-sm text-gray-600">{numberOfCourses} courses</span>
+          </div>
+        </div>
+        
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-gray-200" />
+            <span className="text-sm text-gray-600">{tutorName}</span>
+          </div>
+          <span className="text-sm font-medium text-gray-700">{coursePrice}</span>
+        </div>
+      </div>
+      
+      <div className="px-6 pb-6">
+        <button className="w-full bg-[#1FD891] hover:bg-[#1abc7f] text-white font-bold py-2 px-4 rounded-full transition-colors">
+          LEARN MORE
+        </button>
+      </div>
+    </div>
   );
 };
 
