@@ -1,97 +1,111 @@
-// TeamCard.js
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
+import { styled } from '@mui/material/styles';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 
-const useStyles = makeStyles({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: 317.921,
-    height: 378.81,
-    padding: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 10,
-    flexShrink: 0,
-    borderRadius: 24,
-    border: '1px solid #EAECF0',
-    background: 'var(--white, #FFF)',
-    boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
-    marginBottom: 15, 
+const StyledCard = styled(Card)({
+  display: 'flex',
+  flexDirection: 'column',
+  width: 317.921,
+  height: 378.81,
+  padding: 16,
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 10,
+  flexShrink: 0,
+  borderRadius: 24,
+  border: '1px solid #EAECF0',
+  background: 'var(--white, #FFF)',
+  boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+  marginBottom: 15,
+});
 
-    
-  },
-  media: {
-    height: 200,
-    width: 280, 
-  },
-  teamName: {
-    fontFamily: 'Poppins',
-    fontSize: 20,
-    fontWeight: 500,
-    color: '#000', // Change the color as needed
-  },
-  teamRole: {
-    fontFamily: 'Poppins',
-    fontSize: 16,
-    fontWeight: 400,
-    color: '#888', // Change the color as needed
-  },
+const StyledCardMedia = styled(CardMedia)({
+  height: 200,
+  width: 280,
+});
 
-  socialMediaIcons: {
-    display: 'flex',
-    gap: 10,
-    marginTop: 10,
-    marginLeft: 10,
-    
-  },
-  icon: {
-    
-    width: 36,
-    height: 36,
-    padding: 10,
-    borderRadius: 100,
-    background: '#F2F4F7',
+const NameTypography = styled(Typography)({
+  fontFamily: 'Poppins',
+  fontSize: 20,
+  fontWeight: 500,
+  color: '#000',
+});
+
+const RoleTypography = styled(Typography)({
+  fontFamily: 'Poppins',
+  fontSize: 16,
+  fontWeight: 400,
+  color: '#888',
+});
+
+const SocialMediaContainer = styled('div')({
+  display: 'flex',
+  gap: 10,
+  marginTop: 10,
+  marginLeft: 10,
+});
+
+const SocialIcon = styled('div')({
+  width: 36,
+  height: 36,
+  padding: 10,
+  borderRadius: 100,
+  background: '#F2F4F7',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  cursor: 'pointer',
+  transition: 'background-color 0.3s ease',
+  '&:hover': {
+    background: '#E4E7EC',
   },
 });
 
 const TeamCard = ({ person, category }) => {
-  const classes = useStyles();
-
   return (
-    <Card className={classes.root}>
-      <CardMedia
-        className={classes.media}
-        image={person ? person.image : null} // Add the person's image URL
+    <StyledCard>
+      <StyledCardMedia
+        component="img"
+        image={person?.image}
+        alt={person ? `${person.name} - ${person.role}` : category}
         title={person ? person.name : category}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="h2" className={classes.teamName}>
+        <NameTypography gutterBottom variant="h5" component="h2">
           {person ? person.name : category}
-        </Typography>
-        <Typography variant="body2" color="textSecondary" component="p" className={classes.teamRole}>
-          {person ? person.role : null} {/* Add person's role */}
-        </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {person ? person.text : null} {/* Add person's small about */}
-        </Typography>
-        <div className={classes.socialMediaIcons}>
-          {person ? (
-            <>
-              <FaFacebook className={classes.icon}/>
-              <FaInstagram  className={classes.icon}/>
-              <FaTwitter  className={classes.icon}/>
-            </>
-          ) : null}
-          
-        </div>
+        </NameTypography>
+        {person && (
+          <>
+            <RoleTypography variant="body2" component="p" sx={{ mb: 1 }}>
+              {person.role}
+            </RoleTypography>
+            <Typography 
+              variant="body2" 
+              color="text.secondary" 
+              component="p"
+              sx={{ mb: 2 }}
+            >
+              {person.text}
+            </Typography>
+            <SocialMediaContainer>
+              <SocialIcon>
+                <FaFacebook />
+              </SocialIcon>
+              <SocialIcon>
+                <FaInstagram />
+              </SocialIcon>
+              <SocialIcon>
+                <FaTwitter />
+              </SocialIcon>
+            </SocialMediaContainer>
+          </>
+        )}
       </CardContent>
-    </Card>
+    </StyledCard>
   );
 };
 

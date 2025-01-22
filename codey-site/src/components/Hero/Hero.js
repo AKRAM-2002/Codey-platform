@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Search } from 'lucide-react';
 import Saly from '../../assets/Saly-38.png';
-import { FaArrowRight, FaSearch } from 'react-icons/fa'; // Import FaSearch
-import './Hero.css';
 
 const Hero = () => {
-  
-
-  // Define the course options
   const courseOptions = [
     'Course 1',
     'Course 2',
@@ -16,80 +11,71 @@ const Hero = () => {
     'Course 5',
   ];
 
-  // State to manage the selected course
   const [selectedCourse, setSelectedCourse] = useState('');
 
-  // Event handler for changing the selected course
-  const handleCourseChange = (event) => {
-    setSelectedCourse(event.target.value);
-  };
-
-  
-
   return (
-    <div className='hero'>
-      <div className="container">
-        {/* left Side */}
-        <div className="left">
-          <h1>A Place For Youth Coders</h1>
-          <p>
-            Grouping youth from all over the world to{" "}
-            <strong>Network</strong> <br />
-            with each other, <strong>Learn</strong> together and{" "}
-            <strong>Participate in</strong> in <br />
-            <strong>Events</strong> in-person in Morocco, Outside or even
-            <br />
-            online!
-          </p>
-          <br />
-          <br />
-
-           {/* Use Link component to navigate to the signup page */}
-           <Link to="/programs" className='btn custom-btn'>
-            Programs <FaArrowRight style={{ color: '#fff', verticalAlign: 'middle', marginLeft: '5px' }}/>
-          </Link>
-          {/* Use Link component to navigate to the signin page */}
-          <Link to="/events" className='custom-btn login-btn'>
-            Events <FaArrowRight style={{ color: '#000', verticalAlign: 'middle', marginLeft: '5px' }}/>
-          </Link>
-
-          <div className="search-bar">
-            <br />
-            <br />
-            <select
-              id="course"
-              value={selectedCourse}
-              onChange={handleCourseChange}
-              className="custom-select"
-            >
-              <option value="">Select a course</option>
-              {courseOptions.map((course, index) => (
-                <option key={index} value={course}>
-                  {course}
-                </option>
-              ))}
-            </select>
-
-            <div class="divider"></div>
-
-              {/* Add the search bar */}
+    <div className="w-full min-h-screen bg-white pt-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left Side */}
+          <div className="space-y-6 lg:pl-8 mt-4 md:mt-8">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+              A Place For Youth Coders
+            </h1>
             
-              <input type="text"  className="search-input"/>
-              <button className="btn search-btn">
-                Search<FaSearch style={{ color: '#fff', verticalAlign: 'middle', marginLeft: '7px' }}/>
+            <p className="text-lg text-gray-600 max-w-xl">
+              Grouping youth from all over the world to Network with each other, 
+              Learn together and Participate in Events in-person in Morocco, 
+              Outside or even online!
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button className="px-6 py-3 bg-green-500 text-white rounded-full font-semibold hover:bg-green-600 transition-colors">
+                Programs
               </button>
-            
+              <button className="px-6 py-3 border border-gray-300 rounded-full font-semibold hover:bg-gray-50 transition-colors">
+                Events
+              </button>
+            </div>
+
+            <div className="bg-white rounded-full shadow-lg p-2 max-w-2xl">
+              <div className="flex flex-col md:flex-row items-center gap-4 p-2">
+                <div className="w-full md:w-1/2">
+                  <select
+                    value={selectedCourse}
+                    onChange={(e) => setSelectedCourse(e.target.value)}
+                    className="w-full px-4 py-2 text-gray-600 bg-transparent border-0 focus:ring-0 font-medium"
+                  >
+                    <option value="">Select a course</option>
+                    {courseOptions.map((course, index) => (
+                      <option key={index} value={course}>
+                        {course}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                
+                <div className="w-full md:w-1/2 relative">
+                  <input
+                    type="text"
+                    placeholder="Search courses..."
+                    className="w-full px-4 py-2 pr-10 text-gray-600 bg-transparent border-0 focus:ring-0 font-medium"
+                  />
+                  <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                </div>
+              </div>
+            </div>
           </div>
 
-        
-             
-          
-        </div>
-
-        {/* Right Side */}
-        <div className="right">
-          <div className="img-container">
-            <img src={Saly} className="SalyImg" id="Saly" />
+          {/* Right Side */}
+          <div className="hidden lg:block">
+            <div className="relative">
+              <img 
+                src={Saly}
+                alt="Youth Coding Illustration"
+                className="w-full max-w-[600px] h-auto lg:pr-8"
+              />
+            </div>
           </div>
         </div>
       </div>
