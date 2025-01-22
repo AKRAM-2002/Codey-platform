@@ -11,92 +11,121 @@ import Invisible from '../../assets/invisible.png';
 import Facebook from  '../../assets/Facebook.png';
 import Apple from  '../../assets/apple.png';
 import Google from  '../../assets/google.png';
+import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
 
+// SignIn Component
 const Signin = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
-<div className="overflow-hidden  flex flex-row w-full pt-2 px-4" id="signinContainer">
-      <div className="logo-container">
-        <img
-          src={Logo}
-          className="logo"
-        />
-        <img
-          src={Codey}
-          className="logo logo-second"
-          id="Codey"
-        />
+    <div className="min-h-screen bg-gray-50">
+      {/* Header/Logo */}
+      <div className="relative top-4 left-4 flex items-center gap-0">
+        <img src={Logo} alt="Logo" className="w-16 h-16" />
+        <img src={Codey} alt="Codey" className="w-20 h-auto -ml-1 mt-1" />
       </div>
 
-      <div className="flex flex-row gap-20 items-center mx-60" id="signin">
-          <div className="flex flex-col gap-12 w-1/2" id="signin-text">
-            
-              <div className="text-8xl font-['Poppins'] font-bold" id="Header">
-                <h1>Sign in to {" "}</h1>
-              </div>
-              <div className="text-4xl font-['Poppins'] font-medium">
+      {/* Main Content */}
+      <div className="container mx-auto px-4 py-8 flex min-h-screen">
+        <div className="flex flex-col lg:flex-row items-center justify-center w-full gap-8 lg:gap-20">
+          {/* Left Column */}
+          <div className="w-full lg:w-1/2 max-w-xl">
+            <div className="space-y-6 lg:pr-12">
+              <h1 className="text-4xl lg:text-7xl font-bold font-poppins">
+                Sign in to
+              </h1>
+              <h2 className="text-2xl lg:text-4xl font-medium font-poppins">
                 Your Account
-              </div>
+              </h2>
+              <p className="text-gray-600 font-poppins">
+                If you don't have an account register
+                <br />
+                You can {" "}
+                <Link to="/signup" className="text-blue-600 font-semibold hover:text-blue-700">
+                  Register here
+                </Link>
+              </p>
+            </div>
+          </div>
+
+          {/* Center Image - Hidden on mobile */}
+          <div className="hidden lg:block">
+            <img src={Saly} alt="Illustration" className="w-64 h-auto" />
+          </div>
+
+          {/* Right Column - Sign In Form */}
+          <div className="w-full lg:w-1/2 max-w-md">
+            <div className="bg-white p-8 rounded-2xl shadow-sm">
+              <h3 className="text-2xl font-medium font-poppins text-center mb-8">
+                Sign in
+              </h3>
               
-              <div className="font-['Poppins'] underheader-text">
-                If you don’t have an account register
-              <div className="font-['Poppins']" id="YouCanRegisterHere1">
-                You can{" "}
-                 <Link to="/signup" className="font-semibold custom-link" id="YouCanRegisterHere">Register here</Link>     
-              </div>
-          </div>
-      </div>
-        <div>
-        <img
-            src={Saly}
-            className="mt-[12px]"
-            id="Saly"
-          />
-        </div>
-        <div className="flex flex-col gap-4 h-[543px] items-center" id="signin-form">
-          <div className="text-3xl font-['Poppins'] font-medium mb-3">
-            Sign in
-          </div>
-            <div className="font-['Poppins']">
-            <input type="text" class="Text-sm input-field" placeholder="Enter email or user name" />
-            </div>
-        
-          <div className="">
-          <input type="password" class="Text-sm input-field" placeholder="Password" />
-            
-          </div>
-          <div className="text-xs font-['Poppins'] text-[#b0b0b0] self-end mb-8">
-            Forgot password ?
-          </div>
-            <div className="font-['Poppins'] font-medium text-white">
-              <button className='bg-green-500 text-white px-4 py-2 rounded-lg'>
-                Login
+              <form className="space-y-6">
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Enter email or user name"
+                    className="w-full h-[62px] px-4 bg-emerald-50/50 rounded-lg 
+                    focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                  />
+                </div>
+
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Password"
+                    className="w-full h-[62px] px-4 bg-emerald-50/50 rounded-lg 
+                    focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
+                  >
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
+
+                <div className="text-right">
+                  <a href="#" className="text-sm text-gray-400 hover:text-gray-600">
+                    Forgot password?
+                  </a>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full h-[59px] bg-emerald-500 text-white rounded-lg
+                  font-medium shadow-lg shadow-emerald-500/20 hover:bg-emerald-600
+                  transition-colors"
+                >
+                  Login
                 </button>
+
+                <div className="text-center text-gray-400">
+                  or continue with
+                </div>
+
+                <div className="flex justify-center gap-4">
+                  <SocialButton icon={Facebook} />
+                  <SocialButton icon={Apple} />
+                  <SocialButton icon={Google} />
+                </div>
+              </form>
             </div>
-          
-          <div className="font-['Poppins'] text-medium text-[#b0b0b0] self-end mb-10">
-            or continue with
-          </div>
-          <div className="flex" id="social-icons">
-                <img
-                  src={Facebook}
-                  className="w-10 shrink-0 mt-px mr-px social-icon"
-                  id="Facebook"
-                />
-                <img
-                  src={Apple}
-                  className="w-10 shrink-0 social-icon"
-                  id="Apple"
-                />
-                <img
-                  src={Google}
-                  className="w-10 shrink-0 social-icon"
-                  id="Google"
-                />
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
+export default Signin;
 
-export default Signin
+// Social Button Component
+const SocialButton = ({ icon }) => (
+  <button className="w-10 h-10 rounded-full bg-white shadow-md hover:shadow-lg
+    transition-shadow flex items-center justify-center">
+    <img src={icon} alt="social" className="w-6 h-6" />
+  </button>
+);
+
