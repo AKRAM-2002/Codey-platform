@@ -6,7 +6,6 @@ import './TeamsPage.css'
 import personImg from "./../assets/person1.png";
 import hiringImg from "./../assets/hiring.png";
 import Footer from '../components/Footer/Footer';
-import { Link } from 'react-router-dom';
 
 
 const strategizersAndOperators = [

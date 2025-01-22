@@ -1,79 +1,143 @@
 import React from 'react';
-import Logo from '../../assets/codey-logo.png';
-import Saly from '../../assets/Saly-1.png';
-import Saly1 from '../../assets/Saly-19.png';
-import { FaArrowRight, FaFacebook, FaInstagram, FaPinterest, FaTwitter } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { 
+  Github, 
+  Twitter, 
+  Youtube, 
+  MessageCircle,
+  Mail,
+  Rocket,
+  Code2,
+  Users,
+  BookOpen,
+  ChevronRight
+} from 'lucide-react';
 
-import './Footer.css'
-const Footer = ({dynamicContent}) => {
+const Footer = () => {
   return (
-
-    <>
-
-    <div className="before-footer">
-      
-    </div>
-    <div className='footer'>
-        <div className="container">
-        <div className='row row1'>
-            <h3>{dynamicContent.title}</h3>
-            <h1>{dynamicContent.subtitle}</h1>
-            <div className="btn-group">
-              <button className='btn btn-footer'>
-                {dynamicContent.buttonText} <FaArrowRight style={{ color: '#fff', verticalAlign: 'middle', marginLeft: '5px' }}/>
-              </button>
+    <footer className="bg-gradient-to-br from-slate-900 to-slate-950 pt-20 pb-6 mt-16">
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12">
+          {/* Brand Column */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-2">
+              <Code2 className="w-8 h-8 text-emerald-400" />
+              <span className="text-2xl font-bold text-white">Codey</span>
+            </div>
+            <p className="text-slate-400 text-sm leading-relaxed">
+              Empowering the next generation of developers with interactive learning experiences and a supportive community.
+            </p>
+            <div className="flex gap-4">
+              <a href="#" className="text-slate-400 hover:text-emerald-400 transition-colors">
+                <Github className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-slate-400 hover:text-emerald-400 transition-colors">
+                <Twitter className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-slate-400 hover:text-emerald-400 transition-colors">
+                <Youtube className="w-5 h-5" />
+              </a>
+              <a href="#" className="text-slate-400 hover:text-emerald-400 transition-colors">
+                <MessageCircle className="w-5 h-5" />
+              </a>
             </div>
           </div>
 
-            <div className='row footer-row'>
-              {dynamicContent.image1 
-              ?   <img src={Saly} className="saly-image" alt="Saly" /> : 
-              ''
-              
-              }
-              {dynamicContent.image2
-              ? <img src={Saly1} className="saly-image1" alt="Saly" /> :
-              ''
-              }
-              <div className="logo-footer">
-                  <img src={Logo} className="logo" alt="Codey Logo" />
-                  <p className='logo-title'>Codey</p>
-              </div>
-              <div className="footer-menu">
-                <ul >
-                {/* map through the array of menu items and create list items */}
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-white font-semibold mb-6">Quick Links</h3>
+            <ul className="space-y-4">
+              {['Courses', 'Tutorials', 'Workshops', 'Community'].map((item) => (
+                <li key={item}>
+                  <a href="#" className="text-slate-400 hover:text-emerald-400 transition-colors flex items-center gap-2 text-sm">
+                    <ChevronRight className="w-4 h-4" />
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-                  <li ><Link to='/' className='active'>Home</Link></li>
-                  <li ><Link to='/teams'>Teams</Link></li>
-                  <li ><Link to='/events'>Events</Link></li>
-                  <li ><Link to='/programs'>Programs</Link></li>
-                  <li ><Link to='/donate'>Donate</Link></li>
-                </ul>
-              </div>
+          {/* Company */}
+          <div>
+            <h3 className="text-white font-semibold mb-6">Company</h3>
+            <ul className="space-y-4">
+              {['About Us', 'Careers', 'Press', 'Contact'].map((item) => (
+                <li key={item}>
+                  <a href="#" className="text-slate-400 hover:text-emerald-400 transition-colors flex items-center gap-2 text-sm">
+                    <ChevronRight className="w-4 h-4" />
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-              <div className="social-icons">
-                <a href="#"><FaInstagram/></a>
-                <a href="#"><FaTwitter/></a>
-                <a href="#"><FaPinterest/></a>
-                <a href="#"><FaFacebook/></a>
-              </div>
-
-
+          {/* Newsletter */}
+          <div>
+            <h3 className="text-white font-semibold mb-6">Stay Updated</h3>
+            <p className="text-slate-400 text-sm mb-4">
+              Subscribe to our newsletter for the latest updates and resources.
+            </p>
+            <div className="flex">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="bg-slate-800 text-white px-4 py-2 rounded-l-lg w-full focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              />
+              <button className="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-r-lg transition-colors">
+                <Mail className="w-5 h-5" />
+              </button>
             </div>
-
-        
-            <div className="copyright">
-              Copyright © 2023 Codey.tech
-              </div>
-
-
+          </div>
         </div>
 
-    </div>
+        {/* Stats Bar */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-t border-b border-slate-800">
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-2 text-emerald-400 mb-2">
+              <Users className="w-5 h-5" />
+              <span className="text-2xl font-bold">50K+</span>
+            </div>
+            <p className="text-slate-400 text-sm">Active Learners</p>
+          </div>
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-2 text-emerald-400 mb-2">
+              <Code2 className="w-5 h-5" />
+              <span className="text-2xl font-bold">200+</span>
+            </div>
+            <p className="text-slate-400 text-sm">Coding Courses</p>
+          </div>
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-2 text-emerald-400 mb-2">
+              <BookOpen className="w-5 h-5" />
+              <span className="text-2xl font-bold">1000+</span>
+            </div>
+            <p className="text-slate-400 text-sm">Tutorials</p>
+          </div>
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-2 text-emerald-400 mb-2">
+              <Rocket className="w-5 h-5" />
+              <span className="text-2xl font-bold">95%</span>
+            </div>
+            <p className="text-slate-400 text-sm">Success Rate</p>
+          </div>
+        </div>
 
-    </>
-  )
-}
+        {/* Bottom Bar */}
+        <div className="pt-8 text-center text-sm text-slate-400">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p>© 2024 Codey. All rights reserved.</p>
+            <div className="flex gap-6">
+              <a href="#" className="hover:text-emerald-400 transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-emerald-400 transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-emerald-400 transition-colors">Cookie Policy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;

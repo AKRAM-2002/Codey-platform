@@ -1,0 +1,65 @@
+.about .container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    
+    position: relative;
+    left: 50px;
+    right: 50px;
+}
+.about .left{
+    padding: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+    margin-left: 1.5rem;
+}
+
+.paragraph{
+    
+}
+
+.about h3{
+    color: #5438DC;
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    line-height: 100%; /* 24px */
+}
+
+
+.about .right{
+    padding: 1rem;
+    margin-left: 5rem;
+    margin-bottom: 5rem;
+}
+
+.about .img-container{
+    width: 100%;
+    display: flex;
+    
+
+}
+
+.about img{
+    width: 400px;
+    height: auto;
+    background:  rgb(244, 234, 234) 80% / cover no-repeat;
+}
+
+.about-btn{
+    background-color: #5438DC;
+    position: absolute;
+    left: 50px;
+}
+
+
+@media screen and (max-width: 940px) {
+    .about .container{
+        grid-template-columns: 1fr;
+        margin: 1rem 0;
+    }
+    
+}
