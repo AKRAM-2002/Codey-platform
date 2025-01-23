@@ -1,12 +1,9 @@
-// TeamsPage.js
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar/Navbar';
-import TeamCard from '../components/Utils/TeamCard'; 
-import './TeamsPage.css'
-import personImg from "./../assets/person1.png";
-import hiringImg from "./../assets/hiring.png";
+import TeamCard from '../components/Utils/TeamCard';
+import personImg from './../assets/person1.png';
+import hiringImg from './../assets/hiring.png';
 import Footer from '../components/Footer/Footer';
-
 
 const strategizersAndOperators = [
   {
@@ -39,7 +36,6 @@ const strategizersAndOperators = [
     },
     image: hiringImg,
   },
-  
 ];
 
 const teamData = {
@@ -84,7 +80,6 @@ const teamData = {
       },
       image: hiringImg,
     },
-    // Add other team members for IT Team
   ],
   'Marketers': [
     {
@@ -139,7 +134,6 @@ const teamData = {
       },
       image: hiringImg,
     },
-    // Add other team members for Talent Recruiters
   ],
   'Educators': [
     {
@@ -152,7 +146,6 @@ const teamData = {
       },
       image: hiringImg,
     },
-    // Add other team members for Educators
   ],
   'Local Representatives': [
     {
@@ -165,9 +158,7 @@ const teamData = {
       },
       image: hiringImg,
     },
-    // Add other team members for Local Representatives
   ],
-  
 };
 
 const TeamsPage = () => {
@@ -186,7 +177,6 @@ const TeamsPage = () => {
   };
 
   useEffect(() => {
-    // Set the first menu item as active by default
     handleActiveMenu(teamCategories[0]);
   }, []);
 
@@ -204,48 +194,58 @@ const TeamsPage = () => {
     title: 'Apply to Become A Staff Member!',
     subtitle: 'Join our team and make a difference!',
     buttonText: 'Apply',
-    image: false 
+    image: false,
   };
 
   return (
     <>
       <Navbar />
-      <div className="teams-page">
-        <section className="teams-header">
-          <h4>Not All heroes wear capes!</h4>
-          <h1>Meet The Codey Team</h1>
+      <div className="p-8 bg-gray-50 mt-20">
+        {/* Teams Header */}
+        <section className="text-center mb-12">
+          <h4 className="text-lg text-gray-600">Not All heroes wear capes!</h4>
+          <h1 className="text-4xl md:text-5xl font-bold text-black mt-4">Meet The Codey Team</h1>
         </section>
 
-        <section className="strategizers-operators">
-          <h3>Strategizers & Operators</h3>
-          <div className="team-cards">
+        {/* Strategizers & Operators */}
+        <section className="text-center mb-12">
+          <h3 className="text-2xl font-semibold text-gray-800 mb-8">Strategizers & Operators</h3>
+          <div className="flex flex-wrap justify-center gap-6">
             {strategizersAndOperators.map((person, index) => (
               <TeamCard key={index} person={person} />
             ))}
           </div>
         </section>
 
-        <section className="team-categories">
-          <ul>
+        {/* Team Categories */}
+        <section className="mb-12">
+          <ul className="flex flex-wrap justify-center gap-4">
             {teamCategories.map((category, index) => (
-              <li key={index} className={category === activeCategory ? 'active' : ''} onClick={() => handleActiveMenu(category)}>
+              <li
+                key={index}
+                className={`cursor-pointer text-lg font-medium ${
+                  category === activeCategory
+                    ? 'text-green-500 border-b-2 border-green-500'
+                    : 'text-gray-600 hover:text-green-500'
+                }`}
+                onClick={() => handleActiveMenu(category)}
+              >
                 {category}
               </li>
             ))}
           </ul>
         </section>
 
-        <section className="team-showcase">
-          <br />
+        {/* Team Showcase */}
+        <section className="flex flex-wrap justify-center gap-6">
           {teamMembersRows.map((row, rowIndex) => (
-            <div key={rowIndex} className="team-row">
+            <div key={rowIndex} className="flex flex-wrap justify-center gap-6">
               {row.map((person, index) => (
                 <TeamCard key={index} person={person} />
               ))}
             </div>
           ))}
         </section>
-
       </div>
       <Footer dynamicContent={dynamicFooterContent} />
     </>

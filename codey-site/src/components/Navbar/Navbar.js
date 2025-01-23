@@ -94,12 +94,14 @@ const Navbar = () => {
                 {item}
               </Link>
             ))}
-            <div className="mt-4 flex items-center space-x-4 px-4">
-              <button className="bg-green-500 text-white px-6 py-2 rounded-full flex items-center space-x-2 hover:bg-green-600 transition-colors duration-200 w-full justify-center">
-                <span>Join Us</span>
-                <FaArrowRight className="w-4 h-4" />
-              </button>
-            </div>
+            <Link to="/signup">
+              <div className="mt-4 flex items-center space-x-4 px-4"  >
+                <button  className="bg-green-500 text-white px-6 py-2 rounded-full flex items-center space-x-2 hover:bg-green-600 transition-colors duration-200 w-full justify-center">
+                  <span>Join Us</span>
+                  <FaArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </Link>
           </div>
         </div>
       </nav>

@@ -9,6 +9,7 @@ import SignIn from './components/Signin';
 import SignUp from './components/Signup';
 
 import './index.css';
+import { Profile, EditProfile, EnrolledCourses } from './pages/Dashboard';
 
 
 function App() {
@@ -23,6 +24,10 @@ function App() {
         {/* These routes are for user authentication */}
         <Route path="/signin" element={<SignIn/>} />
         <Route path="/signup" element={<SignUp/>} />
+
+        <Route path="/dashboard/profile" element={<Profile />} />
+        <Route path="/dashboard/edit-profile" element={<EditProfile />} />
+        <Route path="/dashboard/enrolled-courses" element={<EnrolledCourses />} />
   
       </Routes>
     

@@ -1,5 +1,4 @@
 import React from 'react';
-import './index.css';
 import { FaFacebook, FaGoogle, FaApple } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -13,10 +12,32 @@ import Apple from  '../../assets/apple.png';
 import Google from  '../../assets/google.png';
 import { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
+import { validateSignin } from './signinAction';
 
 // SignIn Component
 const Signin = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({ emailOrUsername: '', password: '' });
+  const [errors, setErrors] = useState({});
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const result = validateSignin(formData);
+    if (!result.success) {
+      const errorObject = {};
+      result.errors.forEach((err) => {
+        errorObject[err.path] = err.message;
+      });
+      setErrors(errorObject);
+    } else {
+      console.log("Form data is valid", formData);
+      // Proceed with form submission
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -61,23 +82,31 @@ const Signin = () => {
                 Sign in
               </h3>
               
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <input
+                    onChange={handleInputChange}
+                    name='emailOrUsername'
+                    value={formData.password}
                     type="text"
                     placeholder="Enter email or user name"
                     className="w-full h-[62px] px-4 bg-emerald-50/50 rounded-lg 
                     focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   />
+                  {errors.emailOrUsername && <p className="text-red-500">{errors.emailOrUsername}</p>}
                 </div>
 
                 <div className="relative">
                   <input
+                    onChange={handleInputChange}
+                    name="password"
+                    value={formData.password}
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
                     className="w-full h-[62px] px-4 bg-emerald-50/50 rounded-lg 
                     focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   />
+                  {errors.password && <p className="text-red-500">{errors.password}</p>}
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}

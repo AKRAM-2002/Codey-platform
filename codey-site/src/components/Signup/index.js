@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './index.css';
 import { Link } from 'react-router-dom';
 import Codey from '../../assets/Codey.png';
 import Logo from '../../assets/codey-logo.png';
@@ -8,14 +7,36 @@ import Facebook from '../../assets/Facebook.png';
 import Apple from '../../assets/apple.png';
 import Google from '../../assets/google.png';
 import { Eye, EyeOff } from 'lucide-react';
+import { validateSignup } from './signupAction';
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({ fullName: '', email: '', password: '' });
+  const [errors, setErrors] = useState({});
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const result = validateSignup(formData);
+    if (!result.success) {
+      const errorObject = {};
+      result.errors.forEach((err) => {
+        errorObject[err.path] = err.message;
+      });
+      setErrors(errorObject);
+    } else {
+      console.log("Form data is valid", formData);
+      // Proceed with form submission
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header/Logo */}
-      <div className="fixed top-4 left-4 flex items-center gap-0">
+      <div className="relative top-4 left-4 flex items-center gap-0">
         <img src={Logo} alt="Logo" className="w-16 h-16" />
         <img src={Codey} alt="Codey" className="w-20 h-auto -ml-1 mt-1" />
       </div>
@@ -55,32 +76,44 @@ const Signup = () => {
                 Sign up
               </h3>
               
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <input
+                    name="fullName"
                     type="text"
+                    value={formData.fullName}
+                    onChange={handleInputChange}
                     placeholder="Full Name"
                     className="w-full h-[62px] px-4 bg-emerald-50/50 rounded-lg 
                     focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   />
+                  {errors.fullName && <p className="text-red-500">{errors.fullName}</p>}
                 </div>
 
                 <div>
                   <input
+                    name="email"
                     type="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                     placeholder="Email Address"
                     className="w-full h-[62px] px-4 bg-emerald-50/50 rounded-lg 
                     focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   />
+                  {errors.email && <p className="text-red-500">{errors.email}</p>}
                 </div>
 
                 <div className="relative">
                   <input
+                    name="password"
+                    value={formData.password}
+                    onChange={handleInputChange}
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
                     className="w-full h-[62px] px-4 bg-emerald-50/50 rounded-lg 
                     focus:outline-none focus:ring-2 focus:ring-emerald-500"
                   />
+                  {errors.password && <p className="text-red-500">{errors.password}</p>}
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
