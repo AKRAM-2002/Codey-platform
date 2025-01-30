@@ -1,0 +1,20 @@
+2025-01-16 14:32:10 INFO Server started on port 8080
+2025-01-16 14:33:12 ERROR Unable to connect to the database
+2025-01-16 14:34:45 WARNING Disk space running low on /dev/sda1
+2025-01-16 14:35:01 ERROR Timeout occurred during request to /api/users
+2025-01-16 14:35:45 INFO User admin logged in
+2025-01-16 14:36:30 ERROR Unable to connect to the database
+2025-01-16 14:37:10 INFO Scheduled maintenance started
+2025-01-16 14:38:24 WARNING High memory usage detected
+2025-01-16 14:39:05 INFO Server backup completed successfully
+2025-01-16 14:40:50 ERROR File not found: /var/www/uploads/image.png
+2025-01-16 14:41:15 WARNING Slow query detected: SELECT * FROM users
+2025-01-16 14:42:10 ERROR Timeout occurred during request to /api/orders
+2025-01-16 14:43:00 INFO User guest logged in
+2025-01-16 14:44:20 ERROR Unable to connect to the database
+2025-01-16 14:45:35 WARNING Disk space running low on /dev/sda1
+2025-01-16 14:46:50 INFO Server restarted
+2025-01-16 14:47:40 ERROR Unauthorized access attempt detected
+2025-01-16 14:48:10 WARNING High CPU usage detected
+2025-01-16 14:49:20 ERROR Timeout occurred during request to /api/products
+2025-01-16 14:50:10 INFO User admin logged out
